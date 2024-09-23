@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import FriendsList from './FriendsList';
 import AddFriend from './AddFriend';
-import { useState } from 'react';
+import Button from './Button';
+import SplitBill from './SplitBill';
 
 const initialFriends = [
   {
@@ -24,33 +26,38 @@ const initialFriends = [
 ];
 
 export default function App() {
+  const [friends, setFriends] = useState(initialFriends);
+  const [showAddFriend, setShowAddFriend] = useState(false);
+
   const [billAmt, setBillAmt] = useState(0);
   const [amtOwed, setAmountOwed] = useState(0);
   const [imageUrl, setImageUrl] = useState(null);
-  const [friendName, setFriendName] = useState('');
   const [friendOwes, setFriendOwes] = useState(0);
   const [friendPaid, setFriendPaid] = useState(0);
   const [payer, setPayer] = useState('');
 
+  const showAddFriendForm = () => {
+    setShowAddFriend((show) => !show);
+  };
+
+  const handleAddFriend = (friend) => {
+    setFriends((friends) => [...friends, friend]);
+    setShowAddFriend(false);
+  };
+
   return (
     <div className='app'>
       <div className='sidebar'>
-        <FriendsList friends={initialFriends} />
+        <FriendsList friends={friends} />
+        {showAddFriend && <AddFriend onAddFriend={handleAddFriend} />}
+        <Button onClick={showAddFriendForm}>{showAddFriend ? 'Close' : 'Add friend'}</Button>
       </div>
-      <div className='form'>
-        <div className='form-add-friend'>
-          <AddFriend />
-        </div>
-      </div>
-      {/* 
-      <BillSplit
-        friendName={setFriendName}
+      <SplitBill
         friendPaid={setFriendPaid}
         billAmt={setBillAmt}
         expense={amtOwed}
         payer={payer}
-        onSelect={setPayer}
-      /> */}
+        onSelect={setPayer}></SplitBill>
     </div>
   );
 }
