@@ -28,6 +28,7 @@ const initialFriends = [
 export default function App() {
   const [friends, setFriends] = useState(initialFriends);
   const [showAddFriend, setShowAddFriend] = useState(false);
+  const [selectedFriend, setSelectedFriend] = useState(null);
 
   const [billAmt, setBillAmt] = useState(0);
   const [amtOwed, setAmountOwed] = useState(0);
@@ -35,6 +36,11 @@ export default function App() {
   const [friendOwes, setFriendOwes] = useState(0);
   const [friendPaid, setFriendPaid] = useState(0);
   const [payer, setPayer] = useState('');
+
+  const handleSelectFriend = (friend) => {
+    setSelectedFriend((selected) => (selected?.id === friend.id ? null : friend));
+    setShowAddFriend(false);
+  };
 
   const showAddFriendForm = () => {
     setShowAddFriend((show) => !show);
@@ -48,16 +54,17 @@ export default function App() {
   return (
     <div className='app'>
       <div className='sidebar'>
-        <FriendsList friends={friends} />
+        <FriendsList
+          friends={friends}
+          selectedFriend={selectedFriend}
+          onSelection={handleSelectFriend}
+        />
+
         {showAddFriend && <AddFriend onAddFriend={handleAddFriend} />}
+
         <Button onClick={showAddFriendForm}>{showAddFriend ? 'Close' : 'Add friend'}</Button>
       </div>
-      <SplitBill
-        friendPaid={setFriendPaid}
-        billAmt={setBillAmt}
-        expense={amtOwed}
-        payer={payer}
-        onSelect={setPayer}></SplitBill>
+      {selectedFriend && <SplitBill selectedFriend={selectedFriend} />}
     </div>
   );
 }

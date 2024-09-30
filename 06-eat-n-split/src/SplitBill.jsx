@@ -1,13 +1,9 @@
-import BillValue from './BillValue';
-import PersonalExpense from './PersonalExpense';
-import FriendExpense from './FriendExpense';
-import WhosPaying from './WhosPaying';
 import Button from './Button';
 
-export default function SplitBill({ friendName, setFriendPaid, setBillAmt, expense, payer, onSelect }) {
+export default function SplitBill({ selectedFriend }) {
   return (
     <form className='form-split-bill'>
-      <h2>Split a bill with {friendName}</h2>
+      <h2>Split a bill with {selectedFriend.name}</h2>
       <label>💰 Bill amount</label>
       <input
         type='text'
@@ -15,7 +11,7 @@ export default function SplitBill({ friendName, setFriendPaid, setBillAmt, expen
       />
       <label>🧔‍♂️ Your expense</label>
       <input type='text' />
-      <label>🧍 {friendName}'s expense</label>
+      <label>🧍 {selectedFriend.name}'s expense</label>
       <input
         type='text'
         disabled
@@ -23,7 +19,7 @@ export default function SplitBill({ friendName, setFriendPaid, setBillAmt, expen
       <label>🤑 Who's paying the bill?</label>
       <select>
         <option value='user'>You</option>
-        <option value='friend'>{friendName}</option>
+        <option value='friend'>{selectedFriend.name}</option>
       </select>
       <Button>Split bill</Button>
     </form>
