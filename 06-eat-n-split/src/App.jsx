@@ -30,13 +30,6 @@ export default function App() {
   const [showAddFriend, setShowAddFriend] = useState(false);
   const [selectedFriend, setSelectedFriend] = useState(null);
 
-  const [billAmt, setBillAmt] = useState(0);
-  const [amtOwed, setAmountOwed] = useState(0);
-  const [imageUrl, setImageUrl] = useState(null);
-  const [friendOwes, setFriendOwes] = useState(0);
-  const [friendPaid, setFriendPaid] = useState(0);
-  const [payer, setPayer] = useState('');
-
   const handleSelectFriend = (friend) => {
     setSelectedFriend((selected) => (selected?.id === friend.id ? null : friend));
     setShowAddFriend(false);
@@ -49,6 +42,11 @@ export default function App() {
   const handleAddFriend = (friend) => {
     setFriends((friends) => [...friends, friend]);
     setShowAddFriend(false);
+  };
+
+  const handleSplitBill = (value) => {
+    setFriends((friends) => friends.map((friend) => (friend.id === selectedFriend.id ? { ...friend, balance: friend.balance + value } : friend)));
+    setSelectedFriend(null);
   };
 
   return (
@@ -64,7 +62,12 @@ export default function App() {
 
         <Button onClick={showAddFriendForm}>{showAddFriend ? 'Close' : 'Add friend'}</Button>
       </div>
-      {selectedFriend && <SplitBill selectedFriend={selectedFriend} />}
+      {selectedFriend && (
+        <SplitBill
+          selectedFriend={selectedFriend}
+          onSplitBill={handleSplitBill}
+        />
+      )}
     </div>
   );
 }

@@ -12,14 +12,14 @@ export default function Friend({ friend, onSelection, selectedFriend }) {
           src={friend.image}
           alt={friend.name}
         />
-        {friend.balance > 0 && (
+        {friend.balance < 0 && (
           <p className='red'>
-            You owe {friend.name} ${friend.balance}
+            You owe {friend.name} ${Math.abs(friend.balance)}
           </p>
         )}
-        {friend.balance < 0 && (
+        {friend.balance > 0 && (
           <p className='green'>
-            {friend.name} owes you ${Math.abs(friend.balance)}
+            {friend.name} owes you ${friend.balance}
           </p>
         )}
         {friend.balance === 0 && <p>You and {friend.name} are even</p>}
