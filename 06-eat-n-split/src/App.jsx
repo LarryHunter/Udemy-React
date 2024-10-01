@@ -23,6 +23,18 @@ const initialFriends = [
     image: 'https://i.pravatar.cc/48?u=499476',
     balance: 0,
   },
+  {
+    id: 495369,
+    name: 'John',
+    image: 'https://i.pravatar.cc/48?u=495369',
+    balance: 0,
+  },
+  {
+    id: 394587,
+    name: 'Bethany',
+    image: 'https://i.pravatar.cc/48?u=394587',
+    balance: 0,
+  },
 ];
 
 export default function App() {
