@@ -7,6 +7,8 @@ import Main from './Main';
 import MovieList from './MovieList';
 import LoadingIndicator from './LoadingIndicator';
 import ErrorMessage from './ErrorMessage';
+import Movie from './Movie';
+import MovieDetails from './MovieDetails';
 // import { tempMovieData } from './movieData';
 // import { tempWatchedMovieData } from './watchedMovieData';
 
@@ -20,10 +22,18 @@ export default function App() {
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [selectedId, setSelectedId] = useState(null);
 
   const handleSearch = (e) => {
-    console.log(e.target.value);
     setQuery(e.target.value);
+  };
+
+  const handleSelectMovie = (movieId) => {
+    setSelectedId((selectedId) => (selectedId === movieId ? null : movieId));
+  };
+
+  const handleCloseMovie = () => {
+    setSelectedId(null);
   };
 
   useEffect(() => {
@@ -36,7 +46,6 @@ export default function App() {
         if (!response.ok) throw new Error('Fetching movie data failed!');
         const data = await response.json();
 
-        console.log(`data.Response = ${data.Response}`);
         if (data.Response === 'False') throw new Error(`No movie or too many results found for search: ${query}`);
         setMovies(data.Search);
       } catch (err) {
@@ -45,6 +54,7 @@ export default function App() {
         setIsLoading(false);
       }
     };
+
     if (query.length < 3) {
       setMovies([]);
       setError('');
@@ -63,13 +73,28 @@ export default function App() {
       <Main>
         <Box>
           {isLoading && <LoadingIndicator />}
-          {!isLoading && !error && <MovieList movies={movies} />}
+          {!isLoading && !error && (
+            <MovieList
+              movies={movies}
+              onSelectMovie={handleSelectMovie}
+            />
+          )}
           {error && <ErrorMessage message={error}></ErrorMessage>}
         </Box>
         <Box>
           <div>
-            <WatchedMoviesSummary watched={watched} />
-            <WatchedMovieList watched={watched} />
+            {selectedId ? (
+              <MovieDetails
+                selectedId={selectedId}
+                onCloseMovie={handleCloseMovie}
+                apiKey={apiKey}
+              />
+            ) : (
+              <>
+                <WatchedMoviesSummary watched={watched} />
+                <WatchedMovieList watched={watched} />
+              </>
+            )}
           </div>
         </Box>
       </Main>
