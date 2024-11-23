@@ -7,7 +7,6 @@ import Main from './Main';
 import MovieList from './MovieList';
 import LoadingIndicator from './LoadingIndicator';
 import ErrorMessage from './ErrorMessage';
-import Movie from './Movie';
 import MovieDetails from './MovieDetails';
 // import { tempMovieData } from './movieData';
 // import { tempWatchedMovieData } from './watchedMovieData';
@@ -34,6 +33,10 @@ export default function App() {
 
   const handleCloseMovie = () => {
     setSelectedId(null);
+  };
+
+  const handleAddWatched = (movie) => {
+    setWatched((watched) => [...watched, movie]);
   };
 
   useEffect(() => {
@@ -85,9 +88,11 @@ export default function App() {
           <div>
             {selectedId ? (
               <MovieDetails
+                apiKey={apiKey}
                 selectedId={selectedId}
                 onCloseMovie={handleCloseMovie}
-                apiKey={apiKey}
+                onAddWatched={handleAddWatched}
+                watched={watched}
               />
             ) : (
               <>
