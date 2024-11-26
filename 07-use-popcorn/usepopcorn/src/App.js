@@ -8,14 +8,10 @@ import MovieList from './MovieList';
 import LoadingIndicator from './LoadingIndicator';
 import ErrorMessage from './ErrorMessage';
 import MovieDetails from './MovieDetails';
-// import { tempMovieData } from './movieData';
-// import { tempWatchedMovieData } from './watchedMovieData';
 
 const apiKey = '580461e8'; // - Key assigned to larry.hunter@outlook.com
 
 export default function App() {
-  // const [movies, setMovies] = useState(tempMovieData);
-  // const [watched, setWatched] = useState(tempWatchedMovieData);
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
@@ -37,6 +33,10 @@ export default function App() {
 
   const handleAddWatched = (movie) => {
     setWatched((watched) => [...watched, movie]);
+  };
+
+  const handleRemoveWatched = (movieId) => {
+    setWatched((watched) => watched.filter((movie) => movie.imdbID !== movieId));
   };
 
   useEffect(() => {
@@ -97,7 +97,10 @@ export default function App() {
             ) : (
               <>
                 <WatchedMoviesSummary watched={watched} />
-                <WatchedMovieList watched={watched} />
+                <WatchedMovieList
+                  watched={watched}
+                  onRemoveWatched={handleRemoveWatched}
+                />
               </>
             )}
           </div>
