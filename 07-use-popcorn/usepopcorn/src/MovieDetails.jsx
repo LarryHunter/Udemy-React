@@ -57,6 +57,15 @@ export default function MovieDetails({ apiKey, selectedId, onCloseMovie, onAddWa
     getMovieDetails();
   }, [selectedId]);
 
+  useEffect(() => {
+    if (!title) return;
+    document.title = title;
+
+    return () => {
+      document.title = 'Movie App';
+    };
+  }, [title]);
+
   return (
     <div className='details'>
       {isLoading ? (
