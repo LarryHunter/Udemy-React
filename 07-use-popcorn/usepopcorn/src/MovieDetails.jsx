@@ -66,6 +66,19 @@ export default function MovieDetails({ apiKey, selectedId, onCloseMovie, onAddWa
     };
   }, [title]);
 
+  useEffect(() => {
+    const closeMovieCallback = (e) => {
+      if (e.code === 'Escape') {
+        onCloseMovie();
+      }
+    };
+    document.addEventListener('keydown', closeMovieCallback);
+
+    return () => {
+      document.removeEventListener('keydown', closeMovieCallback);
+    };
+  }, [onCloseMovie]);
+
   return (
     <div className='details'>
       {isLoading ? (
