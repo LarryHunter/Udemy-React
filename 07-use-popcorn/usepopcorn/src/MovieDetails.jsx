@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import StarRating from './StarRating';
 import Loader from './LoadingIndicator';
+import ErrorMessage from './ErrorMessage';
 
 export default function MovieDetails({ apiKey, selectedId, onCloseMovie, onAddWatched, watched }) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setError] = useState('');
   const [movie, setMovie] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState('');
+  const [error, setError] = useState('');
 
   const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
   const curRating = watched.find((movie) => movie.imdbID === selectedId)?.userRating;
@@ -55,7 +56,7 @@ export default function MovieDetails({ apiKey, selectedId, onCloseMovie, onAddWa
       }
     };
     getMovieDetails();
-  }, [selectedId]);
+  }, [selectedId, apiKey]);
 
   useEffect(() => {
     if (!title) return;
@@ -81,6 +82,7 @@ export default function MovieDetails({ apiKey, selectedId, onCloseMovie, onAddWa
 
   return (
     <div className='details'>
+      {error && <ErrorMessage message={error}></ErrorMessage>}
       {isLoading ? (
         <Loader />
       ) : (
