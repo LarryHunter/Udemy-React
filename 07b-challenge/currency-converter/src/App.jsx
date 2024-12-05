@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import CurrencySearch from './CurrencySearch';
+import LoadingIndicator from './LoadingIndicator';
 
 export default function App() {
   const [amount, setAmount] = useState(1);
@@ -56,6 +57,32 @@ export default function App() {
     };
   }, [amount, toCurr, fromCurr]);
 
+  const getCurrencySymbol = (currencySymbol) => {
+    let symbol = '';
+
+    switch (currencySymbol) {
+      case 'USD':
+        symbol = '$';
+        break;
+      case 'EUR':
+        symbol = '€';
+        break;
+      case 'GBP':
+        symbol = '￡';
+        break;
+      case 'CAD':
+        symbol = 'CA$';
+        break;
+      case 'INR':
+        symbol = '₹';
+        break;
+      default:
+        symbol = '';
+        break;
+    }
+    return symbol;
+  };
+
   return (
     <div>
       <CurrencySearch
@@ -67,23 +94,28 @@ export default function App() {
       <select
         value={fromCurr}
         onChange={(e) => setFromCurr(e.target.value)}>
-        <option value='USD'>USD</option>
-        <option value='EUR'>EUR</option>
-        <option value='CAD'>CAD</option>
-        <option value='INR'>INR</option>
+        <option value='USD'>US Dollar</option>
+        <option value='EUR'>Euro</option>
+        <option value='CAD'>Canadian Dollar</option>
+        <option value='GBP'>UK Pound</option>
+        <option value='INR'>Indian Rupee</option>
       </select>
       <select
         value={toCurr}
         onChange={(e) => setToCurr(e.target.value)}>
-        <option value='USD'>USD</option>
-        <option value='EUR'>EUR</option>
-        <option value='CAD'>CAD</option>
-        <option value='INR'>INR</option>
+        <option value='USD'>US Dollar</option>
+        <option value='EUR'>Euro</option>
+        <option value='CAD'>Canadian Dollar</option>
+        <option value='GBP'>UK Pound</option>
+        <option value='INR'>Indian Rupee</option>
       </select>
 
+      {isLoading && <LoadingIndicator />}
       {!isLoading && (
         <p>
-          {Number(amount).toFixed(2)} {fromCurr} = {Number(convertedAmt).toFixed(2)} {toCurr}
+          {getCurrencySymbol(fromCurr)}
+          {Number(amount).toFixed(2)} = {getCurrencySymbol(toCurr)}
+          {Number(convertedAmt).toFixed(2)}
         </p>
       )}
     </div>

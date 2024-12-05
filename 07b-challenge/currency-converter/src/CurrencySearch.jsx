@@ -4,7 +4,6 @@ export default function CurrencySearch({ handleCurrencyChange, currencyAmt, isLo
       <input
         disabled={isLoading}
         type='text'
-        placeholder='Enter currency amount...'
         onChange={(e) => handleCurrencyChange(e)}
         value={currencyAmt}
       />
