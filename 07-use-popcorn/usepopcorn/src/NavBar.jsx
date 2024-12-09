@@ -3,13 +3,13 @@ import TitleBar from './TitleBar';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
 
-export default function NavBar({ handleSearch, queryString, movies }) {
+export default function NavBar({ query, setQuery, movies }) {
   return (
     <nav className='nav-bar'>
       <TitleBar />
       <SearchBar
-        queryString={queryString}
-        handleSearch={handleSearch}
+        query={query}
+        setQuery={setQuery}
       />
       <SearchResults movies={movies} />
     </nav>

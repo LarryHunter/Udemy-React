@@ -23,10 +23,6 @@ export default function App() {
     return savedWatchedList ? savedWatchedList : [];
   });
 
-  const handleSearch = (e) => {
-    setQuery(e.target.value);
-  };
-
   const handleSelectMovie = (movieId) => {
     setSelectedId((selectedId) => (selectedId === movieId ? null : movieId));
   };
@@ -92,8 +88,8 @@ export default function App() {
   return (
     <>
       <NavBar
-        handleSearch={handleSearch}
-        queryString={query}
+        query={query}
+        setQuery={setQuery}
         movies={movies}
       />
       <Main>
