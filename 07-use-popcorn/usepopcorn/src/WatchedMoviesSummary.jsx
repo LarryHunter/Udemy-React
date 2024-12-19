@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export default function WatchedMoviesSummary({ watched }) {
   const average = (arr) => arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating)).toFixed(2);
@@ -28,3 +30,7 @@ export default function WatchedMoviesSummary({ watched }) {
     </div>
   );
 }
+
+WatchedMoviesSummary.propTypes = {
+  watched: PropTypes.array.isRequired,
+};

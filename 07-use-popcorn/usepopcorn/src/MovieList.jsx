@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Movie from './Movie';
 
 export default function MovieList({ movies, onSelectMovie }) {
@@ -13,3 +14,8 @@ export default function MovieList({ movies, onSelectMovie }) {
     </ul>
   );
 }
+
+MovieList.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onSelectMovie: PropTypes.func.isRequired,
+};

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import OpenButton from './OpenButton';
 
 export default function Box({ children }) {
@@ -15,3 +16,7 @@ export default function Box({ children }) {
     </div>
   );
 }
+
+Box.propTypes = {
+  children: PropTypes.node.isRequired,
+};

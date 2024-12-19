@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export default function SearchResults({ movies }) {
   return (
     <p className='num-results'>
@@ -5,3 +7,7 @@ export default function SearchResults({ movies }) {
     </p>
   );
 }
+
+SearchResults.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

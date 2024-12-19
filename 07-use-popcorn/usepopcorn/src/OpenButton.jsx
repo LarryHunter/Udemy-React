@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export default function OpenButton({ children, onClick }) {
   return (
     <button
@@ -7,3 +9,8 @@ export default function OpenButton({ children, onClick }) {
     </button>
   );
 }
+
+OpenButton.propTypes = {
+  children: PropTypes.node.isRequired,
+  onClick: PropTypes.func.isRequired,
+};

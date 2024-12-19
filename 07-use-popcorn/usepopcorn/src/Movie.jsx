@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export default function Movie({ movie, onSelectMovie }) {
   return (
     <li onClick={() => onSelectMovie(movie.imdbID)}>
@@ -15,3 +17,13 @@ export default function Movie({ movie, onSelectMovie }) {
     </li>
   );
 }
+
+Movie.propTypes = {
+  movie: PropTypes.shape({
+    imdbID: PropTypes.string.isRequired,
+    Poster: PropTypes.string,
+    Title: PropTypes.string,
+    Year: PropTypes.string,
+  }).isRequired,
+  onSelectMovie: PropTypes.func.isRequired,
+};

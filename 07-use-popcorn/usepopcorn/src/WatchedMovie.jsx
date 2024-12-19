@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export default function WatchedMovie({ movie, onRemoveWatched }) {
   return (
     <li>
@@ -29,3 +31,8 @@ export default function WatchedMovie({ movie, onRemoveWatched }) {
     </li>
   );
 }
+
+WatchedMovie.propTypes = {
+  movie: PropTypes.object.isRequired,
+  onRemoveWatched: PropTypes.func.isRequired,
+};

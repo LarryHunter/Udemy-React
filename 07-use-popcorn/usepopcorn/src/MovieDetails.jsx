@@ -1,8 +1,9 @@
 import { useEffect, useState, useRef } from 'react';
+import { useKey } from './useKey';
 import StarRating from './StarRating';
 import Loader from './LoadingIndicator';
 import ErrorMessage from './ErrorMessage';
-import { useKey } from './useKey';
+import PropTypes from 'prop-types';
 
 export default function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   const apiKey = '580461e8'; // - Key assigned to larry.hunter@outlook.com
@@ -140,3 +141,15 @@ export default function MovieDetails({ selectedId, onCloseMovie, onAddWatched, w
     </div>
   );
 }
+
+MovieDetails.propTypes = {
+  selectedId: PropTypes.string.isRequired,
+  onCloseMovie: PropTypes.func.isRequired,
+  onAddWatched: PropTypes.func.isRequired,
+  watched: PropTypes.arrayOf(
+    PropTypes.shape({
+      imdbID: PropTypes.string.isRequired,
+      userRating: PropTypes.number,
+    })
+  ).isRequired,
+};

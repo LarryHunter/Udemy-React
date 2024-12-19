@@ -68,9 +68,13 @@ export default function StarRating({
         ))}
       </div>
       <p style={textStyle}>
-        {messages.length === maxRating
-          ? messages[hoverRating ? hoverRating - 1 : rating - 1]
-          : hoverRating || rating || ''}
+        {(() => {
+          if (messages.length === maxRating) {
+            const index = hoverRating ? hoverRating - 1 : rating - 1;
+            return messages[index];
+          }
+          return hoverRating || rating || '';
+        })()}
       </p>
     </div>
   );
