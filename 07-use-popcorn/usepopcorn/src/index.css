@@ -325,7 +325,6 @@ body {
   aspect-ratio: 1;
   border-radius: 50%;
   border: none;
-  /* background-color: var(--color-text); */
   background-color: #fff;
   color: var(--color-background-500);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
@@ -337,4 +336,26 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.btn-clear {
+  position: relative;
+  border: none;
+  font-size: 1.5rem;
+  border-radius: 0.7rem;
+  width: 5rem;
+  transition: all 0.3s;
+  color: var(--color-text);
+  background-color: var(--color-primary-900);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  align-items: center;
+  top: 0.6rem;
+  height: 3.2rem;
+  aspect-ratio: 1;
+  font-family: sans-serif;
+}
+
+.btn-clear:hover {
+  background-color: var(--color-primary-light);
 }

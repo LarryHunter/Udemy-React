@@ -1,20 +1,16 @@
-import { useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
+import { useRef } from 'react';
+import { useKey } from './useKey';
 
 export default function SearchBar({ query, setQuery }) {
   const initialFocusElememnt = useRef(null);
 
-  useEffect(() => {
-    const callback = (e) => {
-      if (document.activeElement === initialFocusElememnt.current) return;
-      if (e.code === 'Enter') {
-        initialFocusElememnt.current.focus();
-        setQuery('');
-      }
-    };
-
-    document.addEventListener('keydown', callback);
-    return () => document.addEventListener('keydown', callback);
-  }, [setQuery]);
+  const clearSearchAndSetFocus = () => {
+    if (document.activeElement === initialFocusElememnt.current) return;
+    initialFocusElememnt.current.focus();
+    setQuery('');
+  };
+  useKey('Enter', clearSearchAndSetFocus);
 
   return (
     <input
@@ -27,3 +23,8 @@ export default function SearchBar({ query, setQuery }) {
     />
   );
 }
+
+SearchBar.propTypes = {
+  query: PropTypes.string.isRequired,
+  setQuery: PropTypes.func.isRequired,
+};

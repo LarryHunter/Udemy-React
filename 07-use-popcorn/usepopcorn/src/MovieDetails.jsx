@@ -2,8 +2,11 @@ import { useEffect, useState, useRef } from 'react';
 import StarRating from './StarRating';
 import Loader from './LoadingIndicator';
 import ErrorMessage from './ErrorMessage';
+import { useKey } from './useKey';
 
-export default function MovieDetails({ apiKey, selectedId, onCloseMovie, onAddWatched, watched }) {
+export default function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
+  const apiKey = '580461e8'; // - Key assigned to larry.hunter@outlook.com
+
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState('');
@@ -73,18 +76,7 @@ export default function MovieDetails({ apiKey, selectedId, onCloseMovie, onAddWa
     };
   }, [title]);
 
-  useEffect(() => {
-    const closeMovieCallback = (e) => {
-      if (e.code === 'Escape') {
-        onCloseMovie();
-      }
-    };
-    document.addEventListener('keydown', closeMovieCallback);
-
-    return () => {
-      document.removeEventListener('keydown', closeMovieCallback);
-    };
-  }, [onCloseMovie]);
+  useKey('escape', onCloseMovie);
 
   return (
     <div className='details'>
