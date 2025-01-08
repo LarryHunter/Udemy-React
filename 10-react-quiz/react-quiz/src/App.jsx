@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from 'react';
 import Header from './Header';
-import MainComponent from './MainComponent';
+import Main from './Main';
 
 const initialState = {
   questions: [],
@@ -34,10 +34,10 @@ export default function App() {
   return (
     <div className='app'>
       <Header />
-      <MainComponent>
+      <Main>
         <p>1 of 20</p>
         <p>Questions?</p>
-      </MainComponent>
+      </Main>
     </div>
   );
 }

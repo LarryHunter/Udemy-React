@@ -1,10 +1,9 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import './index.css';
-import App from './App.jsx';
+import PropTypes from 'prop-types';
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
+export default function Main({ children }) {
+  return <div className='main'>{children}</div>;
+}
+
+Main.propTypes = {
+  children: PropTypes.node.isRequired,
+};
