@@ -35,7 +35,7 @@ export default function App() {
     <div className='app'>
       <Header />
       <Main>
-        <p>1 of 20</p>
+        <p>1 of 15</p>
         <p>Questions?</p>
       </Main>
     </div>
