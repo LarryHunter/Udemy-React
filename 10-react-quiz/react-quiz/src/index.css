@@ -8,6 +8,9 @@
 
   --color-theme: #1098ad;
   --color-accent: #ffa94d;
+
+  --color-correct: #32cc17;
+  --color-wrong: #eb1f1f;
 }
 
 * {
@@ -129,7 +132,8 @@ progress {
 }
 
 .btn:not([disabled]):hover {
-  background-color: var(--color-darkest);
+  /* background-color: var(--color-darkest); */
+  background-color: var(--color-theme);
 }
 
 .btn-option:not([disabled]):hover {
@@ -157,13 +161,14 @@ progress {
 }
 
 .btn-option.correct {
-  background-color: var(--color-theme);
-  border: 2px solid var(--color-theme);
+  background-color: var(--color-correct);
+  border: 2px solid var(--color-correct);
   color: var(--color-light);
 }
+
 .btn-option.wrong {
-  background-color: var(--color-accent);
-  border: 2px solid var(--color-accent);
+  background-color: var(--color-wrong);
+  border: 2px solid var(--color-wrong);
   color: var(--color-darkest);
 }
 
@@ -215,8 +220,8 @@ progress {
 
 /* CREDIT: https://dev.to/afif/i-made-100-css-loaders-for-your-next-project-4eje */
 .loader {
-  width: 50px;
-  height: 24px;
+  width: 100px;
+  height: 48px;
   background: radial-gradient(circle closest-side, currentColor 90%, #0000) 0% 50%,
     radial-gradient(circle closest-side, currentColor 90%, #0000) 50% 50%,
     radial-gradient(circle closest-side, currentColor 90%, #0000) 100% 50%;
