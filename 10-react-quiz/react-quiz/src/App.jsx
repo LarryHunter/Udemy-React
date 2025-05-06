@@ -7,6 +7,8 @@ import Start from './components/Start';
 import Question from './components/Question';
 import Finished from './components/Finished';
 import NextButton from './components/NextButton';
+import Progress from './components/Progress';
+import RestartButton from './components/Restart';
 
 const initialState = {
   questions: [],
@@ -15,9 +17,10 @@ const initialState = {
   index: 0,
   answer: null,
   points: 0,
+  highScore: 0,
 };
 
-const reducer = (state, action, index) => {
+const reducer = (state, action) => {
   switch (action.type) {
     case 'dataReceived':
       return { ...state, questions: action.payload, status: 'ready' };
@@ -37,14 +40,24 @@ const reducer = (state, action, index) => {
     }
     case 'nextQuestion':
       return { ...state, index: state.index++, answer: null };
+    case 'finish':
+      return {
+        ...state,
+        status: 'finished',
+        highScore: state.points > state.highScore ? state.points : state.highScore,
+      };
+    case 'restart':
+      // return { ...initialState, questions: state.questions, status: 'ready' };
+      return { ...state, index: 0, answer: null, points: 0, highScore: state.highScore, status: 'ready' };
     default:
       throw new Error('Unknown action!');
   }
 };
 
 export default function App() {
-  const [{ questions, status, index, answer }, dispatch] = useReducer(reducer, initialState);
+  const [{ questions, status, index, answer, points, highScore }, dispatch] = useReducer(reducer, initialState);
   const numQuestions = questions.length;
+  const totalPoints = questions.reduce((accumulated, question) => accumulated + question.points, 0);
 
   useEffect(() => {
     fetch('http://localhost:8000/questions')
@@ -56,6 +69,7 @@ export default function App() {
   return (
     <div className='app'>
       <Header />
+
       <Main>
         {status === 'loading' && <Loader />}
         {status === 'error' && <ErrorMsg />}
@@ -63,10 +77,19 @@ export default function App() {
           <Start
             numQuestions={numQuestions}
             dispatch={dispatch}
+            points={points}
+            totalPoints={totalPoints}
           />
         )}
         {status === 'active' && (
           <>
+            <Progress
+              index={index}
+              numQuestions={numQuestions}
+              points={points}
+              totalPoints={totalPoints}
+              answer={answer}
+            />
             <Question
               question={questions[index]}
               dispatch={dispatch}
@@ -75,10 +98,21 @@ export default function App() {
             <NextButton
               dispatch={dispatch}
               answer={answer}
+              index={index}
+              numQuestions={numQuestions}
             />
           </>
         )}
-        {status === 'finished' && <Finished />}
+        {status === 'finished' && (
+          <>
+            <Finished
+              points={points}
+              totalPoints={totalPoints}
+              highScore={highScore}
+            />
+            <RestartButton dispatch={dispatch} />
+          </>
+        )}
       </Main>
     </div>
   );
