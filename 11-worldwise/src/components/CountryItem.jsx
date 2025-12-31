@@ -4,7 +4,7 @@ function CountryItem({ country }) {
   return (
     <li className={styles.countryItem}>
       <span>{country.emoji}</span>
-      <h2>{country.country}</h2>
+      <span>{country.country}</span>
     </li>
   );
 }

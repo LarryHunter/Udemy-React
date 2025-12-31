@@ -19,13 +19,18 @@ export default function App() {
 
   useEffect(() => {
     const fetchCities = async () => {
+      let errMsg = '';
       try {
         setIsLoading(true);
         const response = await fetch(`${BASE_URL}/cities`);
+        if (!response.ok) {
+          errMsg = `Error fetching cities: ${response.status} ${response.statusText}`;
+        }
         const data = await response.json();
         setCities(data);
       } catch (error) {
-        console.error('Error fetching cities:', error);
+        console.error('Error fetching cities:', errMsg || error.message);
+        throw new Error(errMsg || error.message);
       } finally {
         setIsLoading(false);
       }

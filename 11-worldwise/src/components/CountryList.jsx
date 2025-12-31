@@ -12,13 +12,14 @@ function CountryList({ cities, isLoading }) {
     return <Message message={'Add your first country by clicking on a country on the map'} />;
   }
 
-  const countries = cities.reduce((arr, city) => {
-    if (!arr.map((el) => el.country).includes(city.country)) {
-      return [...arr, { country: city.country, emoji: city.emoji }];
-    } else {
-      return arr;
+  const countries = [];
+  const seenCountries = new Set();
+  for (const city of cities) {
+    if (!seenCountries.has(city.country)) {
+      seenCountries.add(city.country);
+      countries.push({ country: city.country, emoji: city.emoji });
     }
-  }, []);
+  }
 
   return (
     <ul className={styles.countryList}>
