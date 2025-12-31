@@ -4,8 +4,8 @@
 }
 
 .nav ul {
-  list-style: none;
   display: flex;
+  list-style: none;
   background-color: var(--color-dark--2);
   border-radius: 7px;
 }
