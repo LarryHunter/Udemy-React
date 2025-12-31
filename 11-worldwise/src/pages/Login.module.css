@@ -39,14 +39,18 @@
 
 a.ctaLink:link,
 a.ctaLink:visited {
-  background-color: var(--color-brand--3);
-  color: var(--color-brand--4);
-  padding: 0.8rem 2rem;
-  border-radius: 7px;
+  color: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+  background-color: var(--color-brand--2);
+  color: var(--color-dark--0);
 }
 
-a.ctaLink:hover,
-a.ctaLink:active {
-  background-color: var(--color-brand--2);
-  color: var(--color-brand--1);
+a.ctaLink:hover {
+  background-color: var(--color-brand--3);
+  color: var(--color-dark--0);
 }
