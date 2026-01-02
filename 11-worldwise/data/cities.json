@@ -28,7 +28,7 @@
       "cityName": "Las Vegas",
       "country": "USA",
       "emoji": "🇺🇸",
-      "date": "1994-03-01T10:30:00.000Z",
+      "date": "1994-02-28T10:30:00.000Z",
       "notes": "Moved here after college.",
       "position": {
         "lat": 36.1699412,
@@ -40,7 +40,7 @@
       "cityName": "Temecula",
       "country": "USA",
       "emoji": "🇺🇸",
-      "date": "2005-11-05T00:00:00.000Z",
+      "date": "2005-11-05T08:00:00.000Z",
       "notes": "Moved to Southern California for work.",
       "position": {
         "lat": 33.4936391,
@@ -52,7 +52,7 @@
       "cityName": "Escondido",
       "country": "USA",
       "emoji": "🇺🇸",
-      "date": "2014-05-15T00:00:00.000Z",
+      "date": "2014-05-15T06:00:00.000Z",
       "notes": "Moved here to be closer to work.",
       "position": {
         "lat": 33.1192068,
@@ -64,7 +64,7 @@
       "cityName": "Idaho Falls",
       "country": "USA",
       "emoji": "🇺🇸",
-      "date": "2019-03-19T00:00:00.000Z",
+      "date": "2019-03-19T15:00:00.000Z",
       "notes": "Moved here for a change of scenery.",
       "position": {
         "lat": 43.491651,
@@ -76,7 +76,7 @@
       "cityName": "St. Johns",
       "country": "USA",
       "emoji": "🇺🇸",
-      "date": "2022-06-01T00:00:00.000Z",
+      "date": "2022-06-01T13:00:00.000Z",
       "notes": "Moved here to get away from the cold.",
       "position": {
         "lat": 47.673988,
@@ -88,7 +88,7 @@
       "cityName": "Dublin",
       "country": "Ireland",
       "emoji": "🇮🇪",
-      "date": "2023-10-31T15:59:59.138Z",
+      "date": "2017-03-10T15:59:59.138Z",
       "notes": "My favorite city so far!",
       "position": {
         "lat": 53.349805,
@@ -136,7 +136,7 @@
       "cityName": "Frankfurt",
       "country": "Germany",
       "emoji": "🇩🇪",
-      "date": "2023-02-14T09:24:11.863Z",
+      "date": "2017-03-07T09:24:11.863Z",
       "notes": "Awesome place!",
       "position": {
         "lat": 50.110924,
