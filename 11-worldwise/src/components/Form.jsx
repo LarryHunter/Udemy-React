@@ -54,7 +54,7 @@ function Form() {
       <div className={styles.buttons}>
         <Button
           type='primary'
-          onClick={''}>
+          onClick={() => {}}>
           Add
         </Button>
         <Button
