@@ -91,32 +91,44 @@
       "date": "2017-03-10T15:59:59.138Z",
       "notes": "My favorite city so far!",
       "position": {
-        "lat": 38.727881642324164,
-        "lng": -9.140900099907554
+        "lat": 53.349805,
+        "lng": -6.26031
       },
       "id": 73930385
     },
     {
-      "cityName": "Madrid",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2023-07-15T08:22:53.976Z",
+      "cityName": "Amsterdam",
+      "country": "Netherlands",
+      "emoji": "🇳🇱",
+      "date": "2000-02-12T08:22:53.976Z",
       "notes": "",
       "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
+        "lat": 52.370216,
+        "lng": 4.895168
       },
       "id": 17806751
     },
     {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2023-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
+      "cityName": "Rotterdam",
+      "country": "Netherlands",
+      "emoji": "🇳🇱",
+      "date": "2000-02-13T14:42:53.976Z",
+      "notes": "",
       "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
+        "lat": 51.922504,
+        "lng": 4.479179
+      },
+      "id": 17806797
+    },
+    {
+      "cityName": "Stockholm",
+      "country": "Sweden",
+      "emoji": "🇸🇪",
+      "date": "1998-10-20T09:24:11.863Z",
+      "notes": "",
+      "position": {
+        "lat": 59.32932349999999,
+        "lng": 18.0685808
       },
       "id": 98443197
     },
@@ -127,8 +139,8 @@
       "date": "2017-03-07T09:24:11.863Z",
       "notes": "Awesome place!",
       "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
+        "lat": 50.110924,
+        "lng": 8.682127
       },
       "id": 984436457
     }
